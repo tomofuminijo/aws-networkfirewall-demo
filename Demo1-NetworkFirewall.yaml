@@ -128,6 +128,24 @@ Resources:
         - Key: Purpose
           Value: Demo
 
+  FirewallRouteTable1:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC1
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-FierwallRT1
+        - Key: Purpose
+          Value: Demo
+        - Key: Network
+          Value: Firewall
+  FirewallSubnetRouteTableAssociation1:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref FirewallSubnet1
+      RouteTableId: !Ref FirewallRouteTable1
+
+
   PublicRouteTable1:
     Type: 'AWS::EC2::RouteTable'
     Properties:
